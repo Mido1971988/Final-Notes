@@ -925,7 +925,8 @@ body {
 Read 
 -vmin if h < w will take vh // if w < h will take vw
 -vmax if h > w will take vh // if w > h will take vw
--vh (viewport height)  */
+-vh (viewport height)  
+- vsh (viewport height suitable for both mobile and desktop) */
 
 /* default Font size for Webpage is 16px but 1em not means 16px it means 1 time 
 of font-size inherited from father if font size of for exp. <div> is 20 
@@ -31796,7 +31797,7 @@ To install react app with typescript:
 npx create-react-app react-mui-demo --template typescript 
 
 To install mui library: 
-npm install @mui/material @emotion/react @emotion/styled
+npm install @mui/icons-material @mui/material @emotion/styled @emotion/react
 
 * Typography: 
 
@@ -32048,7 +32049,8 @@ If a row is already filled with the specified number of columns, the next item s
 [2] wrap entire component tree in App.tsx with ThemeProvider component and add theme variable to Theme prop 
 - note : if you want to add new option in theme will give you an Error you should creat new file ( theme.d.ts) and import ThemeOptions this is a link how to write interface ( https://github.com/mui/material-ui/blob/v5.13.5/packages/mui-material/src/styles/createPalette.d.ts ) 
 
-
+* note : css styling the styled-components API or makeStyles not compatible with React 18 so we use mui/system ( npm install mui/system ) and then use sx prop like sx={{ bgcolor: "green" }
+you can also use global.css
 ---------------------
 Testing 
 
@@ -33045,6 +33047,8 @@ but in nextjs by default will combine those 2 fetches to one fetch.
         but by using useOptimistic will check the box in UI then check the server if ok box remains checked 
         if not will uncheck the box
 
+    ** note : Server action can be used from both server and client component and you should use revalidatePath("/") to re-render server Component ( server component does not support hook like useState to rerender)
+    
     
 ** Redux Toolkit with Nextjs 13 :
 [1] create Store by const store = configureStore({reducer : {auth.reducer}})
@@ -33077,7 +33081,39 @@ but in nextjs by default will combine those 2 fetches to one fetch.
     [5] you can access state like before const listOfU = useAppSelector((state) => state.myReducer.listOfUsers);
 
     * note : fetchUsers.fulfilled (fetch succeeded), fetchUsers.rejected (fetch rejected), fetchUsers.pending (still fetching) created automatically for you 
-    * note : redux action type string argument that passed to createAsyncThunk() you can access it from action.type in extraReducers  function 
+    * note : redux action type string argument that passed to createAsyncThunk() you can access it from action.type in extraReducers  function
+
+* Steps for using light/Dark Mode in NextJs ( Tailwind) : 
+    the problem is when you use light/Dark Mode in NextJs when you refresh page will flash to light mode then Dark or light depending what user choosed becasue in NextJs all pages render on server first ( SSR) so on server we don’t know what user choosed Dark or light ( useMediaQuery default false ) 
+    
+    [1] if you are using Tailwind add this line ( darkMode : "class" ) to tailwind.config.ts
+    [2] npm i next-themes
+    [3] import { ThemeProvider } from "next-themes"; and wrap you application with <ThemeProvider attribute="class" defaultTheme="system" enableSystem>{children}</ThemeProvider>
+    [4] add suppressHydrationWarning attribute to HTML Tag in Layout.tsx
+    [5] const { setTheme, resolvedTheme } = useTheme(); 
+
+    * note : next-themes uses under the hood localstorage to save dark or light mode then retrieve it 
+    same concept of using cookies in Steps for using light/Dark Mode in NextJs ( MUI )
+
+* Steps for using light/Dark Mode in NextJs ( MUI ) :  
+    we cannot use next-themes becasue we can not do 1st step iwith Tailwind adding line ( darkMode : "class" ) to tailwind.config.ts
+    so we will use cookies to store dark or light mode preference and retrieve it from server component (layout.tsx) by cookies().get("theme-preference")?.value
+
+    [1] import {ThemeProvider as MuiThemeProvider,createTheme,} from "@mui/material/styles"; in Providers.tsx
+    [2] const lightTheme = createTheme() and darkTheme = createTheme() and <MuiThemeProvider theme={cookieTheme === "dark" ? darkTheme : lightTheme}></MuiThemeProvider> in Providers.tsx
+    [3] wrap children in layout.tsx with Providers Component and pass prop cookieTheme={cookies().get("theme-preference")?.value || "dark"} to Providers
+    [4] check Providers.tsx to see how to use useMediaQuery and useCookies to change Theme when user change Theme in his Device and don not forget to use router.refresh() to force layout.tsx to re-render when you change Theme
+    
+        * note : Server component does not support Hooks so useMediaQuery and useCookies can not be used from Server Component but you can use cookies.get() (in nextjs 14 you can not use cookies.set())
+        * note : do not forget to use <CssBaseline /> ( like in layout.tsx in hungry ashraf to apply default css of MUI)
+
+
+* Note : 
+    If you import server component inside client component will be also client component 
+    But if you pass server component as child to client component will remain server component that’s why you can wrap your app with client side provider and will not change your server side components
+    See this ( https://youtu.be/9YuHTGAAyu0?si=vhW26hHqNPWTmRVM)
+
+
  
 
 ***************************************** TailWind CSS *****************************************
