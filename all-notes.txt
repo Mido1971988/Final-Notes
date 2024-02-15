@@ -32051,6 +32051,15 @@ If a row is already filled with the specified number of columns, the next item s
 
 * note : css styling the styled-components API or makeStyles not compatible with React 18 so we use mui/system ( npm install mui/system ) and then use sx prop like sx={{ bgcolor: "green" }
 you can also use global.css
+
+* note : to use google fonts with MUI : 
+steps : 
+    [1] import { Pacifico } from "next/font/google";
+    [2] const pacifico = Pacifico({weight: "400",subsets: ["latin"],variable: "--font-pacifico", });
+    [3] <body id="__next" className={`${pacifico.variable}`}></body> in layout.tsx
+    [4] sx{{fontFamily: "var(--font-pacifico)",}}
+
+
 ---------------------
 Testing 
 
@@ -33227,6 +33236,19 @@ but in nextjs by default will combine those 2 fetches to one fetch.
     3. Inside the search bar, type “tailwindcss” and select it.
     4. Now your CSS file is associated with Tailwind CSS instead of regular css and the warnings should be gone.
 
+* Note : to use Tailwind with MUI you have to tell nextjs that take style from tailwind before MUI 
+if you did not you will see flickering when refresh 
+steps : 
+    [1] add id="__next" to body element in layout.tsx
+    [2] add important: "#__next" in tailwind.config.ts
+    *note : you cannot use custom theme( like primary.main in dark/light mode MUI theme ) in className of tailwind so in this case you should use sx={{ bgcolor: "primary.main" }}
+
+* Note : to use google font with tailwind
+steps : 
+    [1] import { Pacifico } from "next/font/google";
+    [2] const pacifico = Pacifico({weight: "400",subsets: ["latin"],variable: "--font-pacifico", });
+    [3] <body id="__next" className={`${pacifico.variable}`}></body> in layout.tsx
+    [4] className={`font-xs sm:font-sm font-pacifico`}
 
 ***************************************** SASS *****************************************
 
