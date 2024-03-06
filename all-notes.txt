@@ -34219,3 +34219,273 @@ Object.entries() - O(n)
 * Graph :
     A graph is a non-linear data structure that consists of a finite number of vertices (also called nodes) connected by edges
     Trees are a specific type of graph data structure.
+
+***************************************** Wordpress *****************************************
+
+* Difference between Wordpress.com vs wordpress.org?
+Wordpress.com like renting website but the will maintain the website for you (limited plugin and on free version will add adds to website)
+Wordpress.org like buying website but you have to maintain your website (you can use more plugins and you can host on any hosting website )
+
+* Difference between Themes and plugins ?
+Themes : to change your website appearance 
+Plugins : to change your website functionality and features 
+
+* Is Wordpress.org free ?
+Yes free but you have to pay for domain name and hosting account
+
+* To access your dashboard you have two options : 
+1 - if you are using Hosting ( domain-name/wp-admin )
+2 - if you are using local ( press WP Admin button )
+
+* Best website to purchase a theme ?
+ https://themeforest.net
+Purchase and download ( installable Wordpress file only )
+
+* Best website to buy plugins?
+https://codecanyon.net
+Purchase and download ( installable Wordpress file only )
+
+
+* Best performance free theme ?
+Astra
+Kadence 
+
+* After choosing the theme you can import starter template ( different design for chosen theme ) 
+you can also import starter packs ( design of single page not whole site like starter template) 
+You can also import wireframe (like starter pack but without no styling so willl be easier to customize )
+
+* Structure of webdesign in wordpress is pages or posts
+
+* Every post should has category ( default uncategorized ) 
+
+* Difference between category and tag ? 
+Each post should has category but should not has tag 
+Category has hierarchy which means you can have parent , child or grand child 
+But tag only one level
+
+* Some recommended plugins 
+Wpforms ( forms )
+Anti spam bee 
+Yoast SEO
+Site kit by google ( track traffic on your website) 
+User role editor ( allow users contributors to upload media )  
+Woo commerce ( e commerce website ) 
+Wordfence ( security)
+Updraft plus ( backup)
+Kadence block ( for Kadence theme )
+
+* Website to get color palette 
+Colorhunt.co
+
+***************************************** PHP *****************************************
+
+* Easy way to install php and apache server is downloading Mamp app ( XAMPP on windows )
+
+* you can add php files to Applications/MAMP/htdocs
+
+* Opening and closing tag of a Php block of code <?php ?>
+    Best practice if only one block of Php code remove closing tag ?> because if you write it maybe will cause output buffering (will understand later )
+
+* echo & print is like console.log in JS (echo and print is case insensitive so you can write ECHO)
+
+* Shortcut of <?php echo ‘hello world’ ?> is <?= ‘hello world’ ?>
+
+* Comments // like JS or # like python
+    Multiple line comments /* */ and you can use it within Php code like 
+    Echo ‘hello world’ /* comment*/ ;
+
+* Gettype() to get type in Php
+
+
+* Type conversion in Php 
+    Echo 1 + “2” 
+    Will give you 3 ( will convert the returned value (3) to integer will not convert type of 1 or “2” ) 
+
+* Type casting 
+    (Int) “5 lessons” 
+    Will convert it to 5 
+
+    (Int) 15.5
+    Will convert it to 15 
+
+    (Int) 15.5 + (Int) 15.5 will give you 30 integer
+    15.5 + 15.5 will give you 31 float double
+    (Int) (15.5 + 15.5 ) will give you 31 integer
+
+    (bool) “” will give you false 
+    (bool) 0 will give you false 
+    (bool) “0” will give you false 
+    (bool) “elzero” will give you true
+
+* Difference between var_dump and echo ? 
+    echo simply output the value and var_dump outputs the value and also the type whether it is integer, string, object, array,..
+
+* Escaping ( using \ ) :
+
+    Echo “ hello “world” “ will give you error
+    Echo “ hello ‘world’  “ no error
+    Echo “ hello \“world\” “ no error
+
+* Escaping using heredoc and nowdoc :
+    $name = “Osama” 
+    Echo <<< “here” 
+    My name is $name 
+    \\\\
+    Here ; 
+
+    Echo <<< ‘Now’
+    My name is $name 
+    \\\\
+    Now ; 
+
+    Note : 
+    heredoc using double quotes 
+    Nowdoc using single quotes 
+    And you can write any word not only here or now
+
+    Difference between heredoc and nowdoc ? 
+    Nowdoc will escape everything so will not print value of variable $name and will print 4 \
+    Heredoc will escape everything but will print value of variable $name and will print 2 \
+    Because 2 \ will be escaped from other 2 \
+
+    nl2br() method ( without this method will print in one line ) : 
+    Echo nl2br(hello 
+    World)
+
+
+* Array : 
+    - Array in Php has key and value and if you didn’t add key will use index as key
+    - Echo will not print array you need to loop on that array and echo can’t so you can use print_r() 
+
+    <?php
+
+    echo '<pre>';
+    print_r([
+        0 => "Sameh",
+        "A" => "Ahmed",
+        "B" => "Basem",
+        "Mahmoud",
+        True => "Sayed",
+        "1" => "Osama",
+        "Gamal",
+        9 => "Amera",
+        "Eman",
+        "Mohamed",
+        False => "Asmaa",
+        8 => "Haytham",
+        "Samer",
+        "Names" => [
+        "Osama",
+        "Ahmed",
+        "Sayed" => [
+            "1",
+            "2",
+            "3"
+        ]
+        ]
+    ]);
+    echo '</pre>';
+
+    Notes : 
+    You added 0 => Sameh
+    So mahmoud will take 1 index
+
+    True => "Sayed", 
+    True means 1 so sayed will override mahmoud
+
+    "1" => "Osama",
+    Will override sayed
+
+    Gamal will take index 2
+
+    Eman will take index 10 not 3 because will continue after largest index 
+
+    False => "Asmaa" will override Sameh because false means 0 
+
+    8 => "Haytham" the output array will not be sorted so index 8 will be after 9 or 10
+
+
+
+* Variables : 
+    - Naming Rules + Info
+    [1] Start With Dollar Sign $
+    [2] Start With A Letter [a-z] Or [A-Z] Or Underscore
+    [3] You Can Use Numbers Inside The Name
+    [4] No Special Characters Allowed
+    [5] Case Sensitive
+    
+
+    $username = osama
+    Echo using Single And Double Quotes ( same concept of heredoc and nowdoc)
+    Echo “hello $username” will give you hello osama
+    Echo ‘hello $username’ will give you hello $username
+
+
+
+ 
+    - Variable Variable
+    Takes The Value Of A Variable And Treats That As The Name Of A Variable
+  
+
+    $a = "osama";
+    $$a = "elzero";
+    $$$a = "school";
+
+    echo $a; //osama
+    echo "<br>";
+    echo $$a; // elzero
+    echo "<br>";
+    echo $osama; // elzero
+    echo "<br>";
+    echo $$$a; // school
+    echo "<br>";
+    echo $elzero; // school
+    echo "<br>";
+
+    echo "Hello ${$a}"; // $$a
+    echo "<br>";
+    echo "Hello ${$$a}"; // $$$a
+
+
+    - Assign Variable By Reference
+        - By Default, Variables Are Always Assigned By Value
+        - Assigned By Reference Make Variable Alias Or Point To Another
+
+   
+
+        $a = "Osama";
+        $b = &$a;
+        $b = "Elzero";
+        $a = "School";
+
+        echo $a; // school
+        echo '<br>';
+        echo $b; // school
+
+    - Pre-Defined Variables
+
+        // echo '<pre>';
+        // print_r($_SERVER);
+        // echo $_SERVER["HTTP_CONNECTION"];
+        // echo '</pre>';
+
+        echo $_GET["username"]; will give you username that inserted by user inside the form
+
+
+        <form action="" method="get">
+        <input type="text" name="username">
+        <input type="submit" value="Send">
+        </form>
+
+
+    - Constants
+        - That Value Cannot Change During The Execution
+        - Constants Always Uppercase
+  
+
+    define("DB_NAME", "elzero");
+    define("MAIN_NUMBER", 5);
+    define("MAIN_NUMBER", 100); // error
+
+    echo DB_NAME;
+    echo MAIN_NUMBER * 50; // no error
