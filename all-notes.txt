@@ -35161,3 +35161,515 @@ Colorhunt.co
 
   }
 
+* Loop
+
+* While Loop 
+
+    $i = 1;
+
+    while ($i <= 3) {
+
+        echo "$i<br>";
+
+        $i++;
+
+    }
+
+    // another syntax
+    $a = 1;
+
+    while ($a <= 3) :
+
+        echo "$a<br>";
+
+        $a++;
+
+    endwhile;
+
+* Do, While Loop
+
+
+    $i = 4;
+
+    while ($i <= 3) {
+
+        echo "$i<br>";
+
+        $i++;
+
+    }
+
+    do {
+
+        echo "$i<br>";
+
+        $i++;
+
+    } while ($i <= 3);
+
+    difference between while and do while ? 
+    do while will excute the code first then check the condition that's why last example do while will print 4 but while will not print anything
+
+
+* For Loop
+
+
+    $i = 1;
+
+    while ($i <= 3) {
+
+        echo "$i<br>";
+
+        $i++;
+
+    }
+
+    echo '##### <br>';
+
+    for ($i = 1; $i <= 3; $i++) {
+
+        echo "$i<br>";
+
+    }
+
+    echo '##### <br>';
+
+    $index = 1;
+
+    for (;;) :
+
+        if ($index == 4) {
+
+        break;
+
+        }
+
+        echo "$index<br>";
+
+        $index++;
+
+    endfor;
+
+
+* Foreach Loop
+
+    $countries = ["EG", "SA", "QA", "SY"];
+
+    echo '<pre>';
+    print_r($countries);
+    echo '</pre>';
+
+    foreach ($countries as $country) {
+
+        echo $country . "<br>";
+
+    }
+
+    $countries_with_discount = ["EG" => 50, "SA" => 30, "QA" => 50, "SY" => 70];
+
+    echo '<pre>';
+    print_r($countries_with_discount);
+    echo '</pre>';
+
+    foreach ($countries_with_discount as $country => $discount) :
+
+        echo "Country Name Is $country And Discount Is $discount <br>";
+
+    endforeach;
+
+* Break, Continue
+    - Break Ends Execution Of (For, Foreach, While, Do-while or Switch)
+    - Skip Current Iteration
+
+    foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
+
+        if ($country == "USA") {
+
+        break;
+
+        }
+
+        echo $country . "<br>";
+
+    }
+
+    echo "########## <br>";
+
+    foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
+
+        if ($country == "USA") {
+
+        continue;
+
+        }
+
+        echo $country . "<br>";
+
+    }
+
+* Include Require
+    bring code from another file and use it
+
+    - difference between include or require ? 
+    if you include wrong file name will give you warning but will continue excuting the rest of code
+    but require will crash the entire application
+
+    differnce between include and include_once ?
+    in include_once will check if you included this file before will not include it again
+
+
+    include("test.php"); // $a = 10;
+    require("test.php"); // $a = 10;
+
+    include_once("test.php"); // $a = 10;
+
+    echo $a . '<br>';
+
+    $a = 20;
+
+    include_once("test.php"); // $a = 10;
+
+    echo $a . '<br>'; // with include_once will print 20 but with include will print 10
+
+    echo "Continue";
+
+
+* Function
+
+    function say_hello_to($someone) {
+        echo "Hello Mr $someone<br>";
+    }
+
+    say_hello_to("Osama");
+
+
+    function say_hello_to($one, $two) {
+        echo "Hello $one $two<br>";
+    }
+    say_hello_to("Osama", "Ahmed");
+
+    function deep_freezer($item) {
+        if ($item === "Water") {
+        echo "Make Ice <br>";
+        } elseif ($item === "Coca Cola") {
+        echo "Make It Cold <br>";
+        } elseif ($item === "Fruits") {
+        echo "Make It Fresh <br>";
+        } else {
+        echo "Unknown Item";
+        }
+    }
+
+    deep_freezer("Water");
+    deep_freezer("Coca Cola");
+    deep_freezer("Fruits");
+    deep_freezer("Tv Remote");
+
+
+    $prizes = ["PC", "Playstation", "XBOX", "Apple TV", "Laptop", "iPad", "iPhone"];
+
+    function get_number($num_one, $num_two) {
+        return $num_one + $num_two;
+        echo "Will Not Echo Anything";
+    }
+
+    // get_number(2, 1); // 3
+    // echo $prizes[3]; // "Apple TV"
+    // $prize_number = get_number(2, 1);
+    // var_dump($prize_number);
+    // echo $prizes[];
+
+    // $prize_number = get_number(2, 1);
+    // var_dump($prize_number);
+
+    echo $prizes[get_number(2, 1)];
+
+    <?php
+
+
+* Function- Default Parameter Value
+
+    function get_data($country = "Private Country", $name = "Private", $age = "Private", $address = "Private Address") {
+        // if ($address === "") {
+        //   $address = "Private Address";
+        // }
+        $line_one = "Your Country Is $country And Your Name Is $name <br>";
+        $line_two = "Your Age Is $age And You Live In $address";
+        return $line_one . $line_two;
+    }
+* skip argument and target specific argument
+    echo get_data(address: "Cairo");
+
+
+
+* Function Arguments List
+    - Variable Arguments List
+    --- func_num_args() return number of arguments
+    --- func_get_arg(index) return specific of arguments
+    --- func_get_args() return array of arguments
+
+    function calculate(...$nums) {
+
+        // without spread operator in arguments ( ...$nums)
+        // echo "Number Of Arguments: " . func_num_args() . "<br>";
+        // echo "Argument Index Number 3 Is " . func_get_arg(3) . "<br>";
+        // print_r(func_get_args());
+        // $result = 0;
+        // foreach (func_get_args() as $arg) :
+        //   $result += $arg;
+        // endforeach;
+        // echo $result;
+        echo "Argument Index Number 3 Is " . $nums[3] . "<br>";
+        print_r($nums);
+
+        // with spread operator in arguments ( ...$nums)
+        $result = 0;
+        foreach ($nums as $num) :
+        $result += $num;
+        endforeach;
+        echo $result;
+    }
+
+    calculate(10, 20, 50, 30, 40, 50, 100);
+
+
+* Function- Unpacking In Arguments
+
+
+    $group_of_skills = ["HTML", "CSS", "JS", "PHP"];
+
+    function get_data($name, $country = "Private", ...$skills) {
+        echo "Hello $name Your Country Is $country <br>";
+        foreach ($skills as $skill) :
+        echo "-- $skill <br>";
+        endforeach;
+    }
+
+    // get_data("Osama", "Egypt", ...$group_of_skills);
+    get_data("Osama", "Egypt", ...["HTML", "CSS", "JS", "PHP"]);
+
+
+
+* Function- Variable Function
+    --- PHP Allow To Use Variable Like Function
+    --- When You Append Parentheses () To Variable PHP Will Look For Function With That Name
+    - Function Exists
+    --- function_exists("Func Name") return true if found
+
+
+    function one() {
+        return "One From Function";
+    }
+
+    // echo one();
+
+    $func1 = "one";
+
+    echo $func1();
+
+    echo '<br>';
+
+    function say_hello_to($someone) {
+        return "Hello $someone";
+    }
+
+    $func2 = "say_hello_to";
+
+    echo $func2("Osama");
+
+    echo '<br>';
+
+    function testing() {
+        return "Testing From Function";
+    }
+
+    if (function_exists("testing")) {
+        echo testing();
+    } else {
+        echo "Function Not Found";
+    }
+
+    echo '<br>';
+
+    // echo strlen("Elzero"); // 6
+
+    $func3 = "strlen";
+
+    echo $func3("Elzero");
+
+
+* Function - Passing Arguments by Reference
+    --- By Default, Function Arguments Are Passed By Value
+    --- If The Value Of The Argument Inside The Function Changed It Will Not Change Outside
+    --- To Change It Outside Pass The Argument By Reference
+
+    // Pass The Argument By Reference &$number
+    function add_five(&$number) {
+        $number += 5;
+        return $number;
+    }
+
+    $n = 15;
+
+    echo add_five($n) . "<br>"; // 20
+
+    echo $n; // 20
+
+    echo '<br>';
+
+    //- Return Type Declarations ( : int ) same synatx of type script
+    function calculate($n1, $n2) : int {
+        return $n1 + $n2;
+    }
+
+    echo calculate(10.5, 9.5);
+
+    echo '<br>';
+
+    echo gettype(calculate(10.5, 9.5)); // Integer
+
+
+
+* Anonymous Function
+    --- When We Create A Function We Give It A Name So We Can Call It Later With That Name
+    --- Sometimes We Need To Create A Function For Specific Task <= This Is Not Against DRY
+
+    - Variable Inherit From Parent Scope
+    - Variable Inherit By Reference From Parent Scope
+    - Anonymous Function Can Be Passed To A Function
+    - Anonymous Function Can Be Return From A Function
+
+
+    // Normal Function With Parameter
+
+    function say_hello_to($someone) {
+        return "Hello $someone";
+    }
+
+    echo say_hello_to("Osama");
+
+    echo '<br>#########<br>';
+
+    // Anonymous Function In Variable
+
+    $say_hello = function() {
+        return "Hello";
+    };
+
+    echo $say_hello();
+
+    echo '<br>#########<br>';
+
+    // Anonymous Function With Parameter In Variable
+
+    $say_hola = function($someone) {
+        return "Hola $someone";
+    };
+
+    echo $say_hola("Osama");
+
+    echo '<br>#########<br>';
+
+    // Inherit Variable From Parent Scope ( by using use ($msg))
+
+    $msg = "Hi";
+
+    $say_hi = function($someone) use ($msg) {
+        return "$msg $someone";
+    };
+
+    echo $say_hi("Osama");
+
+    echo '<br>#########<br>';
+
+    // Pass Anonymous Function To Function => array_map
+
+    $nums = [10, 20, 30, 40, 50];
+
+    function add_five($item) {
+        return $item + 5;
+    }
+
+    $nums_after_adding_five = array_map("add_five", $nums);
+
+    echo '<pre>';
+    print_r($nums_after_adding_five);
+    echo '</pre>';
+
+    $nums_after_adding_ten = array_map(function($item) { return $item + 10; }, $nums);
+
+    echo '<pre>';
+    print_r($nums_after_adding_ten);
+    echo '</pre>';
+
+
+
+* Arrow Function
+    --- Short Syntax For Anonymous Function
+    --- Automatic Use Variables From Parent Scope
+
+    - Syntax
+    --- Function Replaces With fn
+    --- No Need For Curly Braces
+    --- Return Is Omitted
+
+
+    // Arrow Function In Variable
+
+    $say_hello = fn() => "Hello";
+
+    echo $say_hello();
+
+    echo '<br>#########<br>';
+
+    // Arrow Function With Parameter In Variable
+
+    $say_hola = fn($someone) => "Hola $someone";
+
+    echo $say_hola("Osama");
+
+    echo '<br>#########<br>';
+
+    // Arrow Inherit Variable From Parent Scope Is Automatic
+
+    $msg = "Hi";
+
+    $say_hi = fn($someone) => "$msg $someone";
+
+    echo $say_hi("Osama");
+
+    echo '<br>#########<br>';
+
+    // Pass Arrow Function To Function => array_map
+
+    $nums = [10, 20, 30, 40, 50];
+
+    $nums_after_adding_ten = array_map(fn($item) => $item + 10, $nums);
+
+    echo '<pre>';
+    print_r($nums_after_adding_ten);
+    echo '</pre>';
+
+
+* String
+    - Access Elements
+    --- String Is Array Of Characters
+    --- Access Elements By Index "Zero Based Indexing"
+    --- Negative Index Are Allowed
+    - Update Elements
+    --- Update Current Elements
+    --- Add New Elements
+
+    $str = "Elzero";
+
+    echo "First Letter Is $str[0]<br>";
+    echo "4th Letter Is $str[3]<br>";
+    echo "Number Of Letters " . strlen($str) . "<br>";
+    echo "Last Letter Is $str[-1]<br>";
+    echo "Last Letter Is {$str[strlen($str) - 1]}<br>";
+
+    echo $str . "<br>";
+    $str[0] = "A";
+    echo $str . "<br>";
+    $str[6] = "A";
+    echo $str . "<br>";
