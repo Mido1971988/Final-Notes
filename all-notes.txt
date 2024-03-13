@@ -35673,3 +35673,387 @@ Colorhunt.co
     echo $str . "<br>";
     $str[6] = "A";
     echo $str . "<br>";
+
+* String Functions 1
+    - lcfirst(String[Required])
+    - ucfirst(String[Required])
+    - strtolower(String[Required])
+    - strtoupper(String[Required])
+    - ucwords(String[Required], Delimiters[Optional])
+    - str_repeat(String[Required], Count[Required])
+    
+
+    echo lcfirst("Elzero Web School") . "<br>";
+    echo ucfirst("elzero web school") . "<br>";
+    echo strtolower("ELZERO WEB SCHOOL") . "<br>";
+    echo strtoupper("elzero web school") . "<br>";
+    // uppercase of first letter of each word  we didn’t add separator so function used default separator “ “
+    echo ucwords("elzero web school") . "<br>";
+    // here we used separator | so output will be 
+    Elzero web|School
+    echo ucwords("elzero web|school", "|") . "<br>";
+    echo str_repeat("Elzero", 3);
+
+
+* String Functions 2
+    - implode(Separator[Optional], Array[Required]) => join() Is Alias
+    - explode(Separator[Required], String[Required], Limit[Optional])
+    - str_shuffle(String[Required])
+    - strrev(String[Required])
+    - trim(String[Required], CharsList[Optional])
+    - ltrim(String[Required], CharsList[Optional])
+    - rtrim(String[Required], CharsList[Optional])
+    --- Space ""
+    --- Tab \t
+    --- New Line \n
+    --- Carriage Return \r
+    --- Vertical Tab "\x0B"
+    --- NULL "\0"
+    
+
+    $friends = ["Ahmed", "Osama", "Ali", "Salem"];
+
+    // implode is join strings from array with a given separator 
+    echo implode(" ", $friends) . "<br>";
+    echo implode(", ", $friends) . "<br>";
+    echo implode("@@", $friends) . "<br>";
+    // we didn’t add separator so function didn’t use separator and join all strings in one long word
+    echo implode($friends) . "<br>";
+
+    $str = "Elzero Web School Is Cool";
+
+    echo "<pre>";
+    print_r(explode(" ", $str)); 
+    [ 0 => Elzero , 
+    1 => Web , 
+    2 => School ,
+    3=> Is, 
+    4 =>  Cool ]
+    echo "</pre>";
+
+    $str = "Elzero|Web School Is Cool";
+    echo "<pre>";
+    print_r(explode("I", $str));
+    [ 0 => Elzero , 
+    1 => Web School Is Cool ]
+    echo "</pre>";
+
+    $str = "Elzero Web School Is Cool";
+    echo "<pre>";
+    print_r(explode(" ", $str, 3));
+
+    [ 0 => Elzero , 
+    1 => Web , 
+    2 =>  School Is Cool]
+
+    echo "</pre>";
+
+    echo "<pre>";
+    // negative number means will ignore last two items in array
+    print_r(explode(" ", $str, -2));
+
+    [ 0 => Elzero , 
+    1 => Web , 
+    2 => School ]
+    echo "</pre>";
+
+    // random mix of letters
+    echo str_shuffle("Elzero") . "<br>";
+    // reverse the letters of string
+    echo strrev("Elzero") . "<br>";
+
+    echo strlen("   Elzero  ") . "<br>";
+    // trim will remove spaces from the beginning and ending of string 
+    echo strlen(trim("   Elzero  ")) . "<br>";
+
+    // will remove any # or @ 
+    echo trim("#@@Elzero@@@###", "#@") . "<br>";
+
+    // will not remove anything because @ not at the beginning or ending 
+    echo trim("#@@Elzero@@@###", "@") . "<br>";
+
+    // right trim only
+    echo rtrim("#@@Elzero@@@###", "#@") . "<br>";
+    // left trim only
+    echo ltrim("#@@Elzero@@@###", "#@") . "<br>";
+
+* String Functions 3
+    - chunk_split(String[Required], Length[Optional], End[Optional])
+    - strlen(String[Required])
+    - str_split(String[Required], Length[Optional])
+    - strip_tags(String[Required], Allowed[Optional])
+    - nl2br(String[Required], XHTML[Optional])
+  
+
+    // will add @ after each 3 characters ( space is a character)
+    echo chunk_split("Elzero Web School", 3, "@");
+    echo '<br>';
+
+    // will split each character and add them to array
+    echo '<pre>';
+    print_r(str_split("Elzero"));
+    echo '</pre>';
+
+    // will split each 2 character and add them to array
+
+    echo '<pre>';
+    print_r(str_split("Elzero", 2));
+    echo '</pre>';
+
+    echo "<h3>Hello <b>Elzero</b></h3>";
+    echo '<br>';
+
+    // will remove all tags
+    echo strip_tags("<h3>Hello <b>Elzero</b></h3>");
+    echo '<br>';
+
+    // will remove h3 tag only
+
+    echo strip_tags("<h3>Hello <b>Elzero</b></h3>", "<h3><b>");
+    echo '<br>';
+
+    // will remove h3 and b tags
+
+    echo strip_tags("<h3>Hello <b>Elzero</b></h3>", "<h3><b>");
+    echo '<br>';
+
+    // will change \n to <br> 
+    // true ( default) use closing tag of br 
+    // false will not use closing tag of br 
+    echo nl2br("Elzero\nWeb\nSchool", false);
+
+* String Functions 4
+    - strpos(String[Required], Value[Required], Start Position[Optional]) Case-Sensitive
+    - strrpos(String[Required], Value[Required], Start Position[Optional]) Case-Sensitive
+    - stripos(String[Required], Value[Required], Start Position[Optional]) Case-Insensitive
+    - strripos(String[Required], Value[Required], Start Position[Optional]) Case-Insensitive
+    - substr_count(String[Required], Value[Required], Start Position[Optional], Length[Optional])
+
+    // will return position of first found 
+    var_dump(strpos("Hello Hello", "H")); // 0
+    echo '<br>';
+    // 3 means will start searching from position 3
+    var_dump(strpos("Hello Hello", "H", 3)); // 6
+    echo '<br>';
+    var_dump(strpos("Hello Hello", "H", 6)); // 6
+    echo '<br>';
+    var_dump(strpos("Hello Hello", "h")); // False
+    echo '<br>';
+    var_dump(strpos("Hello Hello", "H", -2)); // False
+    echo '<br>';
+    var_dump(strpos("Hello Hello", "H", -5)); // 6
+    echo '<br>';
+    var_dump(strpos("Hello Hello", "H", -11)); // 0
+    echo '<br>';
+    // string right position means will return last found
+    var_dump(strrpos("Hello Hello", "H")); // 6
+    echo '<br>';
+    var_dump(strrpos("Hello Hello", "H", 5)); // 6
+    echo '<br>';
+    // stripos : i here means case in sensitive 
+    var_dump(stripos("Hello Hello", "h")); // 0
+    echo '<br>';
+    var_dump(strripos("Hello Hello", "h")); // 6
+    echo '<br>';
+    // how many times He found
+    var_dump(substr_count("Hello Hello", "He")); // 2
+    echo '<br>';
+    var_dump(substr_count("Hello Hello", "He", 1)); // 1
+    echo '<br>';
+    // 1 means starting position, 6 means will search from position 1 and six letters after
+    var_dump(substr_count("Hello Hello", "He", 1, 6)); // 0
+    echo '<br>';
+    var_dump(substr_count("abcdabcda", "abcda")); // 1
+
+
+* String Functions 4
+    - parse_str(String[Required], Array[Required])
+    - quotemeta(String[Required])
+    - str_pad(String[Required], Length[Required], String[Optional], Pad Flag[Optional])
+    --- STR_PAD_BOTH
+    --- STR_PAD_LEFT
+    --- STR_PAD_RIGHT
+    - strtr(String[Required], From[Required], To[Required]) || strtr(String[Required], Array[Required])
+  
+
+    // convert query string to array with key and value 
+
+    parse_str("name=Osama&;email=o@nn.sa&;os=mac", $query);
+
+    echo '<pre>';
+    print_r($query);
+    echo '</pre>';
+
+    echo $query["name"] . "<br>";
+    echo $query["email"] . "<br>";
+    echo $query["os"] . "<br>";
+
+    echo "Hello [] () * + . <br>";
+    echo quotemeta("Hello [] () * + . <br>");
+
+    // 8 means length should be 8 
+    // 0 means what character will be added to make length 8 ( default will add spaces ) 
+    // STR_PAD_BOTH will add 0 on both sides 
+    // STR_PAD_LEFT will add 0 on left side only 
+    echo str_pad("12", 8, 0, STR_PAD_BOTH) . "<br>";
+    echo str_pad("321", 8, 0, STR_PAD_BOTH) . "<br>";
+    echo str_pad("1313", 8, 0, STR_PAD_LEFT) . "<br>";
+    echo str_pad("15435", 8, 0, STR_PAD_LEFT) . "<br>";
+    echo str_pad("500432", 8, 0, STR_PAD_LEFT) . "<br>";
+
+    // exchange characters to another characters from @ to l
+    echo strtr("E@zero Web Schoo@", "@", "l");
+
+    echo "<br>";
+
+    // another syntax of strtr is using array of what characters will be changed 
+    $translation = ["@" => "l", "#" => "o"];
+
+    echo strtr("E@zer# Web Sch##@", $translation);
+
+
+* String Functions 6
+    - str_replace(Find[Required], Replace With[Required], Data[Required], Replace Count[Optional])
+    --- Its Case-Sensitive
+    - str_ireplace(Find[Required], Replace With[Required], Data[Required], Replace Count[Optional])
+  
+
+    echo str_replace("@", "o", "Elzer@ Web Sch@@l", $r); // Elzero Web School
+    echo '<br>';
+    echo "Replaces Count Is $r"; // 3
+    echo '<br>';
+    echo str_replace(["#", "@"], "A", "E#zer@ Web Sch@@#"); // EAzerA Web SchAAA
+    echo '<br>';
+    echo str_replace(["#", "@"], ["l", "o"], "E#zer@ Web Sch@@#"); // Elzero Web School
+
+    echo '<pre>';
+    print_r(str_replace("One", 1, ["One", "Two", "Three", "One", "One"]));
+    echo '</pre>';
+
+    echo '<pre>';
+    print_r(str_replace(["One", "Two"], [1, 2], ["One", "Two", "Three", "One", "One"]));
+    echo '</pre>';
+
+    echo '<pre>';
+    // if you didn’t add what value will replace a character by default will replace it to empty string
+    print_r(str_replace(["One", "Two", "Three"], [1, 2], ["One", "Two", "Three", "One", "One"]));
+    echo '</pre>';
+
+    echo '<pre>';
+    print_r(str_ireplace(["one", "two"], [1, 2], ["One", "Two", "Three", "One", "One"]));
+    echo '</pre>';
+
+
+* String Functions 7
+    - substr_replace(String[Required], Replace With Or Insert[Required], Start[Required], Length[$])
+    --- $ Positive Number => Length Of String To Be Replaced
+    --- $ Negative Number => Characters Left At The End After Replacement
+    --- $ 0               => Insert Instead Of Replace
+  
+
+    echo substr_replace("OneTwo", 1, 0); // 1
+    echo '<br>';
+    echo substr_replace("OneTwo", 1, 3); // One1
+    echo '<br>';
+    echo substr_replace("OneTwo", 1, 5); // OneTw1
+    echo '<br>';
+    echo substr_replace("OneTwo", 1, -1); // OneTw1
+    echo '<br>';
+    echo substr_replace("OneTwo", 2, 2); // On2
+    echo '<br>';
+    echo substr_replace("OneTwo", 2, 2, 2); // On2wo
+    echo '<br>';
+    echo substr_replace("OneTwo", 2, 1, 4); // O2o
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "A", 7, 3); // Elzero_A_School
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "A", 7, -1); // Elzero_Al 
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "A", 7, -3); // Elzero_Aool
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "A", 7, -9); // Elzero_Aeb_School
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "A", 7, -10); // Elzero_AWeb_School
+    echo '<br>';
+    echo substr_replace("Elzero_Web_School", "@", 1, 0); // E@lzero_Web_School
+
+    echo "<pre>";
+    print_r(substr_replace(["OneTwo", "ThreeFour"], 1, 0));
+    echo "</pre>";
+
+* String Functions 8
+    - wordwrap(String[Required], Width[Optional = 75], Break_Char[Optional = "\n"], Cut_Long[Optional = False])
+    - ord(String[Required])
+    - chr(Int[Required])
+    - similar_text(String_One[Required], String_Two[Required], Percent[Optional])
+    --- Returns The Number Of Matching Characters
+  
+
+    $str = "Welcome To To To T Elzeroo Web School Website Very_Very_Very_Long";
+
+    echo strlen($str) . "<br>";
+
+    // Will wrap words if words length more than 8
+    echo wordwrap($str, 8, "<br>");
+
+    // true means will break single word if too long like Very_Very_Very_Long
+    echo wordwrap($str, 8, "<br>", True);
+
+    echo "<br>";
+
+    echo ord("a"); // 97
+
+    echo "<br>";
+
+    echo chr(97); // a
+
+    echo "<br>";
+
+    echo similar_text("Elz@ero", "Elz_eroo");
+
+    echo "<br>";
+
+    // $perc means percentage of similarity between these 2 strings
+    echo similar_text("Elzero", "Elzeroo", $perc);
+
+    echo "<br>";
+
+    echo $perc;
+
+
+* String Functions 9
+    - strstr(String[Required], Search[Required], Before_Search[Optional] = False)
+    --- => Alias [strchr]
+    --- Case-Sensitive
+    - stristr(String[Required], Search[Required], Before_Search[Optional] = False)
+    --- Case-Insensitive
+    - number_format(Number[Required], Decimals[Optional], Decimal_String[Optional], Separator[Optional])
+  
+
+    echo strstr("Elzero Web", "W") . "<br>"; // Web
+    echo strstr("Elzero Web", "z") . "<br>"; // zero Web
+    // true means will return the string before W
+    echo strstr("Elzero Web", "W", True) . "<br>"; // Elzero
+    echo strlen(strstr("Elzero Web", "W", True)) . "<br>"; // 7
+
+
+    echo strstr("Elzero Web", "w") . "<br>"; // False
+    var_dump(strstr("Elzero Web", "w"));
+    echo '<br>';
+
+
+    echo stristr("Elzero Web", "w") . "<br>"; // Web
+    // case in sensitive 
+    var_dump(stristr("Elzero Web", "w")); // Web
+    echo '<br>';
+
+    echo 10_000_000;
+    echo '<br>';
+
+    echo number_format(10000000.156023);
+    echo '<br>'; // 10000000
+    echo number_format(10000000.156023, 3);
+    echo '<br>'; // 10000000.156
+    echo number_format(10000000.156023, 3, "@");
+    echo '<br>'; // 10000000@156
+    echo number_format(10000000.156023, 3, "@", "#"); // 10#000#000@156
