@@ -34283,7 +34283,7 @@ Colorhunt.co
 
 * you can add php files to Applications/MAMP/htdocs
 
-* Opening and closing tag of a Php block of code <?php ?>
+* Opening and closing tag of php block of code <?php ?>
     Best practice if only one block of Php code remove closing tag ?> because if you write it maybe will cause output buffering (will understand later )
 
 * echo & print is like console.log in JS (echo and print is case insensitive so you can write ECHO)
@@ -34296,12 +34296,11 @@ Colorhunt.co
 
 * Gettype() to get type in Php
 
-
-* Type conversion in Php 
+* Type conversion in php 
     Echo 1 + “2” 
     Will give you 3 ( will convert the returned value (3) to integer will not convert type of 1 or “2” ) 
 
-* Type casting 
+* Type casting in php
     (Int) “5 lessons” 
     Will convert it to 5 
 
@@ -34321,16 +34320,24 @@ Colorhunt.co
     echo simply output the value and var_dump outputs the value and also the type whether it is integer, string, object, array,..
 
 * Escaping ( using \ ) :
-
-    Echo “ hello “world” “ will give you error
-    Echo “ hello ‘world’  “ no error
-    Echo “ hello \“world\” “ no error
+    echo "hello "world" "; will give you error
+    echo "hello 'world' "; no error
+    echo "hello \"world\" "; no error
 
 * Escaping using heredoc and nowdoc :
+    * heredoc using double quotes or without
+    * Nowdoc using single quotes 
+    * you can write any word not only here or now
+
+    *Difference between heredoc and nowdoc ? 
+        Nowdoc will escape everything so will not print value of variable $name and will print 4 \
+        Heredoc will escape everything but will print value of variable $name and will print 2 \
+        Because 2 \ will be escaped from other 2 \
+    
     $name = “Osama” 
     Echo <<< “here” 
     My name is $name 
-    \\\\
+    \\\\ ""'';;;$$$
     Here ; 
 
     Echo <<< ‘Now’
@@ -34338,19 +34345,9 @@ Colorhunt.co
     \\\\
     Now ; 
 
-    Note : 
-    heredoc using double quotes 
-    Nowdoc using single quotes 
-    And you can write any word not only here or now
-
-    Difference between heredoc and nowdoc ? 
-    Nowdoc will escape everything so will not print value of variable $name and will print 4 \
-    Heredoc will escape everything but will print value of variable $name and will print 2 \
-    Because 2 \ will be escaped from other 2 \
-
     nl2br() method ( without this method will print in one line ) : 
-    Echo nl2br(hello 
-    World)
+    Echo nl2br("hello 
+    World")
 
 
 * Array : 
@@ -34358,51 +34355,50 @@ Colorhunt.co
     - Echo will not print array you need to loop on that array and echo can’t so you can use print_r() 
 
     <?php
-
-    echo '<pre>';
-    print_r([
-        0 => "Sameh",
-        "A" => "Ahmed",
-        "B" => "Basem",
-        "Mahmoud",
-        True => "Sayed",
-        "1" => "Osama",
-        "Gamal",
-        9 => "Amera",
-        "Eman",
-        "Mohamed",
-        False => "Asmaa",
-        8 => "Haytham",
-        "Samer",
-        "Names" => [
-        "Osama",
-        "Ahmed",
-        "Sayed" => [
-            "1",
-            "2",
-            "3"
-        ]
-        ]
-    ]);
+        echo '<pre>';
+        print_r([
+            0 => "Sameh",
+            "A" => "Ahmed",
+            "B" => "Basem",
+            "Mahmoud",
+            True => "Sayed",
+            "1" => "Osama",
+            "Gamal",
+            9 => "Amera",
+            "Eman",
+            "Mohamed",
+            False => "Asmaa",
+            8 => "Haytham",
+            "Samer",
+            "Names" => [
+            "Osama",
+            "Ahmed",
+            "Sayed" => [
+                "1",
+                "2",
+                "3"
+            ]
+            ]
+        ]);
     echo '</pre>';
 
     Notes : 
-    You added 0 => Sameh
-    So mahmoud will take 1 index
+        * You added 0 => Sameh
+            So mahmoud will take 1 index
 
-    True => "Sayed", 
-    True means 1 so sayed will override mahmoud
+        * True => "Sayed", 
+            True means 1 so sayed will override mahmoud
 
-    "1" => "Osama",
-    Will override sayed
+        * "1" => "Osama",
+            Will override sayed
 
-    Gamal will take index 2
+        * Gamal will take index 2
 
-    Eman will take index 10 not 3 because will continue after largest index 
+        * Eman will take index 10 not 3 because will continue after largest index 
 
-    False => "Asmaa" will override Sameh because false means 0 
+        * False => "Asmaa" will override Sameh because false means 0 
 
-    8 => "Haytham" the output array will not be sorted so index 8 will be after 9 or 10
+        * 8 => "Haytham" the output array will not be sorted so index 8 will be after 9 or 10
 
 
 
@@ -34413,45 +34409,40 @@ Colorhunt.co
     [3] You Can Use Numbers Inside The Name
     [4] No Special Characters Allowed
     [5] Case Sensitive
-    
 
+    * Echo using Single And Double Quotes ( same concept of heredoc and nowdoc)
     $username = osama
-    Echo using Single And Double Quotes ( same concept of heredoc and nowdoc)
     Echo “hello $username” will give you hello osama
     Echo ‘hello $username’ will give you hello $username
 
-
-
- 
     - Variable Variable
-    Takes The Value Of A Variable And Treats That As The Name Of A Variable
-  
+        Takes The Value Of A Variable And Treats That As The Name Of A Variable
+        
+        $a = "osama";
+        $$a = "elzero";
+        $$$a = "school";
 
-    $a = "osama";
-    $$a = "elzero";
-    $$$a = "school";
+        echo $a; //osama
+        echo "<br>";
+        echo $$a; // elzero
+        echo "<br>";
+        echo $osama; // elzero
+        echo "<br>";
+        echo $$$a; // school
+        echo "<br>";
+        echo $elzero; // school
+        echo "<br>";
 
-    echo $a; //osama
-    echo "<br>";
-    echo $$a; // elzero
-    echo "<br>";
-    echo $osama; // elzero
-    echo "<br>";
-    echo $$$a; // school
-    echo "<br>";
-    echo $elzero; // school
-    echo "<br>";
-
-    echo "Hello ${$a}"; // $$a
-    echo "<br>";
-    echo "Hello ${$$a}"; // $$$a
+        * you can not use " $$a "  inside string because will consider first $ as string then $a as osama 
+        so " $$a " will print $$a as $osama and " $$$a " as $$osama
+        echo "Hello ${$a}"; // Hello elzero
+        echo "<br>";
+        echo "Hello ${$$a}"; // Hello school
 
 
     - Assign Variable By Reference
         - By Default, Variables Are Always Assigned By Value
         - Assigned By Reference Make Variable Alias Or Point To Another
-
-   
 
         $a = "Osama";
         $b = &$a;
@@ -34469,26 +34460,23 @@ Colorhunt.co
         // echo $_SERVER["HTTP_CONNECTION"];
         // echo '</pre>';
 
-        echo $_GET["username"]; will give you username that inserted by user inside the form
-
-
+        * echo $_GET["username"]; will give you username that inserted by user inside the form
         <form action="" method="get">
         <input type="text" name="username">
         <input type="submit" value="Send">
         </form>
-
 
     - Constants
         - That Value Cannot Change During The Execution
         - Constants Always Uppercase
   
 
-    define("DB_NAME", "elzero");
-    define("MAIN_NUMBER", 5);
-    define("MAIN_NUMBER", 100); // error
+        define("DB_NAME", "elzero");
+        define("MAIN_NUMBER", 5);
+        define("MAIN_NUMBER", 100); // error
 
-    echo DB_NAME;
-    echo MAIN_NUMBER * 50; // no error
+        echo DB_NAME;
+        echo MAIN_NUMBER * 50; // no error
 
 * Operators : 
     - Arithmetic  Operators
@@ -34501,13 +34489,11 @@ Colorhunt.co
         - +$a        => Identity ( like unary operator in js )
         - -$a        => Negation Identity ( like unary operator in js )
   
-
-    echo +"100";
-    echo +"100 string"; // error
-
+        echo +"100";
+        echo +"100 string"; // error
 
     - Assignment Operators
-    - Used To Write Value To Another
+        Used To Write Value To Another
 
         - $a [+=]  $b => Addition
         - $a [-=]  $b => Subtraction
@@ -34534,8 +34520,6 @@ Colorhunt.co
         echo $b;
         echo '<br>';
         echo $c;
-
-
  
     - Comparison Operators
         - Used To Compare Two Values
@@ -34576,7 +34560,7 @@ Colorhunt.co
         var_dump(100.0 !== 100); // true
 
 
-    Comparison Operators
+    - Comparison Operators
         - Used To Compare Two Values
 
         - Part 2
@@ -34605,177 +34589,183 @@ Colorhunt.co
         echo '<br>';
         var_dump(100 <=> 50); // 1
 
-* Incrementing & Decrementing Operators
-    - Increase And Decrease Values
+    - Incrementing & Decrementing Operators
+        - Increase And Decrease Values
+
+        $likes = 0;
+        $likes++;
+        $likes++;
+        $likes++;
+        $likes--;
+
+        echo $likes; // 2
+        echo '<br>';
+
+        $a = 0;
+
+        // post increment
+        echo $a++; // 0
+        echo '<br>';
+        echo $a; // 1
+        echo '<br>';
+
+        $b = 0;
+
+        // pre increment
+        echo ++$b; // 1
+        echo '<br>';
+        echo $b; // 1
 
 
-    $likes = 0;
-    $likes++;
-    $likes++;
-    $likes++;
-    $likes--;
+    - Logical Operators
+        - Compare Conditions
 
-    echo $likes; // 2
-    echo '<br>';
+        and => And => Two Are True
+        &&  => And => Two Are True ["&&" Has A Greater Precedence Than "and"]
+        or  => Or  => One Or Both Is True
+        ||  => Or  => One Or Both Is True ["||" Has A Greater Precedence Than "or"]
+        xor => Xor => One Is True But Not Both
+        !   => Not => Not True
+    
 
-    $a = 0;
+        var_dump(100 > 50 and 100 > 80 and 100 > 90); // True
+        echo '<br>';
+        var_dump(100 > 50 && 100 > 80 && 100 > 100); // False
+        echo '<br>';
+        var_dump(100 > 50 or 100 > 110 or 100 > 100); // True
+        echo '<br>';
+        var_dump(100 > 50 xor 100 > 80); // false
 
-    // post increment
-    echo $a++; // 0
-    echo '<br>';
-    echo $a; // 1
-    echo '<br>';
+    - String Operators
+        - Concatenate Strings
 
-    $b = 0;
+        . ( but here you have to add spaces manually)
+        .=
+    
+        // with constant variables you have to use . You can not use $ELZERO
+        define("ELZERO", "1");
 
-    // pre increment
-    echo ++$b; // 1
-    echo '<br>';
-    echo $b; // 1
+        $a = "Elzero";
+        $b = "Web";
+        $c = "School";
 
+        echo "$a $b $c";
+        echo '<br>';
+        echo "{$a} {$b} {$c}";
+        echo '<br>';
+        echo $a . " " . $b . " " . $c;
+        echo '<br>';
+        echo "{$a} {$b} {$c} " . ELZERO . " " . testing();
+        echo '<br>';
 
-* Logical Operators
-    - Compare Conditions
+        function testing() {
+            return 1;
+        }
 
-    and => And => Two Are True
-    &&  => And => Two Are True ["&&" Has A Greater Precedence Than "and"]
-    or  => Or  => One Or Both Is True
-    ||  => Or  => One Or Both Is True ["||" Has A Greater Precedence Than "or"]
-    xor => Xor => One Is True But Not Both
-    !   => Not => Not True
-  
+        $x = "Elzero ";
+        $x .= "Web"; // $x = $x . "Web" => Elzero Web
+        $x .= " School"; // $x = $x . "School" => Elzero Web School
 
-    var_dump(100 > 50 and 100 > 80 and 100 > 90); // True
-    echo '<br>';
-    var_dump(100 > 50 && 100 > 80 && 100 > 100); // False
-    echo '<br>';
-    var_dump(100 > 50 or 100 > 110 or 100 > 100); // True
-    echo '<br>';
-    var_dump(100 > 50 xor 100 > 80); // false
-
-* String Operators
-    - Concatenate Strings
-
-    . ( but here you have to add spaces manually)
-    .=
-  
-    // with constant variables you have to use . You can not use $ELZERO
-    define("ELZERO", "1");
-
-    $a = "Elzero";
-    $b = "Web";
-    $c = "School";
-
-    echo "$a $b $c";
-    echo '<br>';
-    echo "{$a} {$b} {$c}";
-    echo '<br>';
-    echo $a . " " . $b . " " . $c;
-    echo '<br>';
-    echo "{$a} {$b} {$c} " . ELZERO . " " . testing();
-    echo '<br>';
-
-    function testing() {
-        return 1;
-    }
-
-    $x = "Elzero ";
-    $x .= "Web"; // $x = $x . "Web" => Elzero Web
-    $x .= " School"; // $x = $x . "School" => Elzero Web School
-
-    echo $x;
+        echo $x;
 
 
-* Array Operators
-    - Deal With Arrays
+    - Array Operators
+        - Deal With Arrays
 
-    +     => Union
-    ==    => Equal => Same Key And Value
-    !=    => Not Equal
-    <>    => Not Equal
-    ===   => Identical => Same Key And Value, Same Order, Same Type
-    !==   => Not Identical
-  
+        +     => Union
+        ==    => Equal => Same Key And Value
+        !=    => Not Equal
+        <>    => Not Equal
+        ===   => Identical => Same Key And Value, Same Order, Same Type
+        !==   => Not Identical
+    
 
-    $arr1 = [1 => "A", 2 => "B"];
-    $arr2 = [3 => "C", 4 => "D"];
-    $arr3 = $arr1 + $arr2;
+        $arr1 = [1 => "A", 3 => "C"];
+        $arr2 = [2 => "B", 4 => "D"];
+        $arr3 = $arr1 + $arr2;
 
-    echo '<pre>';
-    print_r($arr1 + $arr2);
-    print_r($arr3);
-    echo '</pre>';
+        echo '<pre>';
+        print_r($arr1 + $arr2); // Array ([1] => A [3] => C [2] => B [4] => D)
+        print_r($arr3); // Array ([1] => A [3] => C [2] => B [4] => D)
+        echo '</pre>';
 
-    $arr4 = [1 => "10", 2 => "20"];
-    $arr5 = [2 => 20, 1 => 10];
+        $arr1 = [1 => "A", 2 => "C"];
+        $arr2 = [2 => "B", 4 => "D"];
 
-    var_dump($arr4 == $arr5); // True
-    echo '<br>';
-    var_dump($arr4 != $arr5); // False
-    echo '<br>';
-    var_dump($arr4 <> $arr5); // False
-    echo '<br>';
+        echo '<pre>';
+        print_r($arr1 + $arr2); // Array ( [1] => A [2] => C [4] => D)
+        echo '</pre>';
 
-    $arr6 = [1 => 100, 2 => 200];
-    $arr7 = [1 => 100, 2 => 200];
+        $arr4 = [1 => "10", 2 => "20"];
+        $arr5 = [2 => 20, 1 => 10];
 
-    var_dump($arr6 === $arr7); // True
+        var_dump($arr4 == $arr5); // True
+        echo '<br>';
+        var_dump($arr4 != $arr5); // False
+        echo '<br>';
+        var_dump($arr4 <> $arr5); // False
+        echo '<br>';
+
+        $arr6 = [1 => 100, 2 => 200];
+        $arr7 = [1 => 100, 2 => 200];
+
+        var_dump($arr6 === $arr7); // True
 
 
-* Error Control Operator
-    - Control The Errors
+    - Error Control Operator
+        - Control The Errors
+        - add @ so will search for variable or file or include if found good if not will display the custom error 
 
-    @
-    - Variable
-    - File
-    - Include
-  
+        @
+        - Variable
+        - File
+        - Include
+    
 
-    // Variable
-    $a = 10;
-    // add @ so will search for variable a ic found good if not will display the custom error 
-    $b = @$a or die("Variable Not Found");
+        // Variable
+        $a = 10;
+        $b = @$a or die("Variable Not Found");
 
-    echo "Test $b";
-    echo '<br>';
+        echo "Test $b";
+        echo '<br>';
 
-    // File
-    $f = @file("osama.txt") or die("File Not Found");
-    echo '<pre>';
-    print_r($f);
-    echo '</pre>';
-    echo '<br>';
+        // File
+        $f = @file("osama.txt") or die("File Not Found");
+        echo '<pre>';
+        print_r($f);
+        echo '</pre>';
+        echo '<br>';
 
-    // Include
-    (@include("osama_elzero.php")) or die("Include File Not Found");
+        // Include
+        (@include("osama_elzero.php")) or die("Include File Not Found");
 
-* Operator Precedence
-    - "||" Has A Greater Precedence Than "or"
-    - && Has A Greater Precedence Than "and"
-  
-    echo 2 + 4 * 5; // 22
-    echo '<br>';
-    echo (2 + 4) * 5; // 30
-    echo '<br>';
-    echo 10 || false || 0 || [] || ""; // True => 1
-    echo '<br>';
-    echo true; // 1
-    echo '<br>';
-    var_dump(10 || false || 0 || [] || ""); // True
-    echo '<br>';
-    echo 10 || false; // 1
-    echo '<br>';
+    - Operator Precedence
+        - "||" Has A Greater Precedence Than "or"
+        - && Has A Greater Precedence Than "and"
+    
+        echo 2 + 4 * 5; // 22
+        echo '<br>';
+        echo (2 + 4) * 5; // 30
+        echo '<br>';
+        echo 10 || false || 0 || [] || ""; // True => 1
+        echo '<br>';
+        echo true; // 1
+        echo '<br>';
+        var_dump(10 || false || 0 || [] || ""); // True
+        echo '<br>';
+        echo 10 || false; // 1
+        echo '<br>';
 
-    $a = 10 || false; // $a = (10 || false) => $a = true
-    echo $a; // true printed with echo 1
+        $a = 10 || false; // $a = (10 || false) => $a = true
+        echo $a; // true printed with echo 1
 
-    echo '<br>';
+        echo '<br>';
 
-    $b = 10 or false; // ($b = 10) or false
-    echo $b; // 10
+        $b = 10 or false; // ($b = 10) or false
+        echo $b; // 10
 
-    $c = false or true; // ( $c = false) or true 
-    var_dump($c);  // bool(false) // echo will not work here
+        $c = false or true; // ( $c = false) or true 
+        var_dump($c);  // bool(false) // echo will not work here
 
 
 * If, Elseif, Else <= Basics
@@ -34788,17 +34778,11 @@ Colorhunt.co
     }
 
     if (10 > 10) {
-
         echo "First Condition";
-
     } elseif (10 > 10) {
-
         echo "Second Condition";
-
     } else {
-
         echo "No";
-
     }
 
 * If, Elseif, Else <= Real Life Examples
@@ -34806,24 +34790,17 @@ Colorhunt.co
     $page = "About";
 
     if ($page == "About") {
-
         echo "This Is The Page";
-
     }
-
 
 * If, Else
 
     $title = "";
 
     if ($title == "") {
-
         echo "Unknown Page";
-
     } else {
-
         echo $title;
-
     }
 
   echo '<br>';
@@ -34833,42 +34810,26 @@ Colorhunt.co
     $lang = "Elzero";
 
     if ($lang == "Arabic") {
-
         echo 'مرحبا';
-
     } elseif ($lang == "English") {
-
         echo 'Hello';
-
     } elseif ($lang == "Spanish") {
-
         echo 'Hola';
-
     } else {
-
         echo 'Unknown Language';
-
     }
 
 * If, Elseif, Else <= Advanced Practice
 
 
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
-
         if ($_POST['lang'] == 'ar') {
-
         header("Location: ar.php");
-
         exit();
-
         } elseif ($_POST['lang'] == 'en') {
-
         header("Location: en.php");
-
         exit();
-
         }
-
     }
 
 <!DOCTYPE html>
@@ -34896,13 +34857,9 @@ Colorhunt.co
 * If, Elseif, Else <= Alternate Syntax
 
     if (10 > 5) {
-
         echo "Good";
-
     } else {
-
         echo "Bad";
-
     }
 
     echo "<br>";
@@ -34959,26 +34916,17 @@ Colorhunt.co
     <?php endif; ?>
 
     <?php
-
     if (10 > 10) :
-
         echo "First";
-
     elseif (10 > 10) :
-
         echo "Second";
-
     else:
-
         echo "Last";
-
     endif;
-
     ?>
 
 
 * Nested If Condition And Training
-
 
     `$name = "Osama";
     $is_student = true;
@@ -34990,23 +34938,18 @@ Colorhunt.co
     $orphan_discount = 15;
 
     if ($country == "Egypt") {
-
         if ($is_student == true) {
-
-        if ($is_orphan == true) {
-
-            echo "Hello $name";
-            echo "<br>";
-            echo "Country Discount $country_discount";
-            echo "<br>";
-            echo "Student Discount $student_discount";
-            echo "<br>";
-            echo "Orphan Discount $orphan_discount";
-            echo "<br>";
-            echo "The Final Price Is " . $price - $country_discount - $student_discount - $orphan_discount;
-
-        } else {
-
+            if ($is_orphan == true) {
+                echo "Hello $name";
+                echo "<br>";
+                echo "Country Discount $country_discount";
+                echo "<br>";
+                echo "Student Discount $student_discount";
+                echo "<br>";
+                echo "Orphan Discount $orphan_discount";
+                echo "<br>";
+                echo "The Final Price Is " . $price - $country_discount - $student_discount - $orphan_discount;
+            } else {
             echo "Hello $name";
             echo "<br>";
             echo "Country Discount $country_discount";
@@ -35014,42 +34957,30 @@ Colorhunt.co
             echo "Student Discount $student_discount";
             echo "<br>";
             echo "The Final Price Is " . $price - $country_discount - $student_discount;
-
-        }
-
+            }
         } else {
-
-        echo "Hello $name";
-        echo "<br>";
-        echo "Country Discount $country_discount";
-        echo "<br>";
-        echo "The Final Price Is " . $price - $country_discount;
-
+            echo "Hello $name";
+            echo "<br>";
+            echo "Country Discount $country_discount";
+            echo "<br>";
+            echo "The Final Price Is " . $price - $country_discount;
         }
-
     } else {
-
         echo "Hello $name";
         echo "<br>";
         echo "No Discount";
         echo "<br>";
         echo "The Final Price Is $price";
-
     }
 
 
 * Ternary Operator => Short If
-
     $a = 10;
 
     if ($a > 8) {
-
         echo "Good";
-
     } else {
-
         echo "Bad";
-
     }
 
     // Condition ? True : False;
@@ -35061,13 +34992,9 @@ Colorhunt.co
     echo "I Love PHP Because Its A ";
 
     if ($a > 8) {
-
         echo "Good";
-
     } else {
-
         echo "Bad";
-
     }
 
     echo " Language";
@@ -35084,19 +35011,18 @@ Colorhunt.co
 
 * nested if condition in ternanry operators 
 
-
     $name = "Osama";
     $age = 40;
     $country = "Egypt";
 
     if ($age > 18) {
-    echo "The Age Is Good To Go<br>";
-    if (gettype($name) === "string") {
-        echo "The Name Is Good To Go<br>";
-        if ($country === "Egypt") {
-        echo "The Country Is Good To Go<br>";
+        echo "The Age Is Good To Go<br>";
+        if (gettype($name) === "string") {
+            echo "The Name Is Good To Go<br>";
+            if ($country === "Egypt") {
+                echo "The Country Is Good To Go<br>";
+            }
         }
-    }
     }
 
     // Needed Output
@@ -35105,12 +35031,9 @@ Colorhunt.co
     "The Country Is Good To Go"
     */
 
-
     $name = "Osama";
     $age = 40;
     $country = "Egypt";
-
-
 
     echo (
         ($age > 18) ? ("The Age Is Good To Go<br>" . (
@@ -35142,170 +35065,126 @@ Colorhunt.co
   $day = "Thu";
 
   switch($day) {
-
     case "Sat":
       echo "Hello Today Is $day We Are Open From 10:16";
       break;
-
     case "Sun":
       echo "Hello Today Is $day We Are Open From 12:18";
       break;
-
     case "Mon":
     case "Thu":
       echo "Hello Today Is $day We Are Open From 08:12";
       break;
-
     default:
       echo "Unknown Day";
-
   }
 
 * Loop
 
-* While Loop 
+    - While Loop 
 
-    $i = 1;
+        $i = 1;
 
-    while ($i <= 3) {
-
-        echo "$i<br>";
-
-        $i++;
-
-    }
-
-    // another syntax
-    $a = 1;
-
-    while ($a <= 3) :
-
-        echo "$a<br>";
-
-        $a++;
-
-    endwhile;
-
-* Do, While Loop
-
-
-    $i = 4;
-
-    while ($i <= 3) {
-
-        echo "$i<br>";
-
-        $i++;
-
-    }
-
-    do {
-
-        echo "$i<br>";
-
-        $i++;
-
-    } while ($i <= 3);
-
-    difference between while and do while ? 
-    do while will excute the code first then check the condition that's why last example do while will print 4 but while will not print anything
-
-
-* For Loop
-
-
-    $i = 1;
-
-    while ($i <= 3) {
-
-        echo "$i<br>";
-
-        $i++;
-
-    }
-
-    echo '##### <br>';
-
-    for ($i = 1; $i <= 3; $i++) {
-
-        echo "$i<br>";
-
-    }
-
-    echo '##### <br>';
-
-    $index = 1;
-
-    for (;;) :
-
-        if ($index == 4) {
-
-        break;
-
+        while ($i <= 3) {
+            echo "$i<br>";
+            $i++;
         }
 
-        echo "$index<br>";
+        // another syntax
+        $a = 1;
 
-        $index++;
+        while ($a <= 3) :
+            echo "$a<br>";
+            $a++;
+        endwhile;
 
-    endfor;
+    * Do, While Loop
 
+        $i = 4;
 
-* Foreach Loop
-
-    $countries = ["EG", "SA", "QA", "SY"];
-
-    echo '<pre>';
-    print_r($countries);
-    echo '</pre>';
-
-    foreach ($countries as $country) {
-
-        echo $country . "<br>";
-
-    }
-
-    $countries_with_discount = ["EG" => 50, "SA" => 30, "QA" => 50, "SY" => 70];
-
-    echo '<pre>';
-    print_r($countries_with_discount);
-    echo '</pre>';
-
-    foreach ($countries_with_discount as $country => $discount) :
-
-        echo "Country Name Is $country And Discount Is $discount <br>";
-
-    endforeach;
-
-* Break, Continue
-    - Break Ends Execution Of (For, Foreach, While, Do-while or Switch)
-    - Skip Current Iteration
-
-    foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
-
-        if ($country == "USA") {
-
-        break;
-
+        while ($i <= 3) {
+            echo "$i<br>";
+            $i++;
         }
 
-        echo $country . "<br>";
+        do {
+            echo "$i<br>";
+            $i++;
+        } while ($i <= 3);
 
-    }
+        * difference between while and do while ? 
+        do while will excute the code first then check the condition that's why last example do while will print 4 but while will not print anything
 
-    echo "########## <br>";
 
-    foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
+    - For Loop
 
-        if ($country == "USA") {
+        $i = 1;
 
-        continue;
-
+        while ($i <= 3) {
+            echo "$i<br>";
+            $i++;
         }
 
-        echo $country . "<br>";
+        echo '##### <br>';
 
-    }
+        for ($i = 1; $i <= 3; $i++) {
+            echo "$i<br>";
+        }
+
+        echo '##### <br>';
+
+        $index = 1;
+
+        for (;;) :
+            if ($index == 4) {
+                break;
+            }
+            echo "$index<br>";
+            $index++;
+        endfor;
+
+
+    - Foreach Loop
+
+        $countries = ["EG", "SA", "QA", "SY"];
+
+        echo '<pre>';
+        print_r($countries);
+        echo '</pre>';
+
+        foreach ($countries as $country) {
+            echo $country . "<br>";
+        }
+
+        $countries_with_discount = ["EG" => 50, "SA" => 30, "QA" => 50, "SY" => 70];
+
+        echo '<pre>';
+        print_r($countries_with_discount);
+        echo '</pre>';
+
+        foreach ($countries_with_discount as $country => $discount) :
+            echo "Country Name Is $country And Discount Is $discount <br>";
+        endforeach;
+
+    * Break, Continue
+        - Break Ends Execution Of (For, Foreach, While, Do-while or Switch)
+        - Skip Current Iteration
+
+        foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
+            if ($country == "USA") {
+                break;
+            }
+            echo $country . "<br>";
+        }
+
+        echo "########## <br>";
+
+        foreach (["EG", "SA", "QA", "SY", "USA", "GER"] as $country) {
+            if ($country == "USA") {
+                continue;
+            }
+            echo $country . "<br>";
+        }
 
 * Include Require
     bring code from another file and use it
@@ -35350,13 +35229,13 @@ Colorhunt.co
 
     function deep_freezer($item) {
         if ($item === "Water") {
-        echo "Make Ice <br>";
+            echo "Make Ice <br>";
         } elseif ($item === "Coca Cola") {
-        echo "Make It Cold <br>";
+            echo "Make It Cold <br>";
         } elseif ($item === "Fruits") {
-        echo "Make It Fresh <br>";
+            echo "Make It Fresh <br>";
         } else {
-        echo "Unknown Item";
+            echo "Unknown Item";
         }
     }
 
