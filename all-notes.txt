@@ -35554,11 +35554,11 @@ Colorhunt.co
     echo $str . "<br>";
 
 * String Functions 1
-    - lcfirst(String[Required])
-    - ucfirst(String[Required])
-    - strtolower(String[Required])
-    - strtoupper(String[Required])
-    - ucwords(String[Required], Delimiters[Optional])
+    - lcfirst(String[Required]) // lowercase first letter
+    - ucfirst(String[Required]) // uppercase first letter
+    - strtolower(String[Required]) // lowercase to all string
+    - strtoupper(String[Required]) // uppercase to all string
+    - ucwords(String[Required], Delimiters[Optional]) // uppercase of first letter of each word
     - str_repeat(String[Required], Count[Required])
     
 
@@ -35602,38 +35602,22 @@ Colorhunt.co
     $str = "Elzero Web School Is Cool";
 
     echo "<pre>";
-    print_r(explode(" ", $str)); 
-    [ 0 => Elzero , 
-    1 => Web , 
-    2 => School ,
-    3=> Is, 
-    4 =>  Cool ]
+    print_r(explode(" ", $str)); // [ 0 => Elzero , 1 => Web , 2 => School , 3=> Is, 4 =>  Cool ]
     echo "</pre>";
 
     $str = "Elzero|Web School Is Cool";
     echo "<pre>";
-    print_r(explode("I", $str));
-    [ 0 => Elzero , 
-    1 => Web School Is Cool ]
+    print_r(explode("|", $str)); // [ 0 => Elzero , 1 => Web School Is Cool ]
     echo "</pre>";
 
     $str = "Elzero Web School Is Cool";
     echo "<pre>";
-    print_r(explode(" ", $str, 3));
-
-    [ 0 => Elzero , 
-    1 => Web , 
-    2 =>  School Is Cool]
-
+    print_r(explode(" ", $str, 3)); // [ 0 => Elzero , 1 => Web , 2 =>  School Is Cool]
     echo "</pre>";
 
     echo "<pre>";
     // negative number means will ignore last two items in array
-    print_r(explode(" ", $str, -2));
-
-    [ 0 => Elzero , 
-    1 => Web , 
-    2 => School ]
+    print_r(explode(" ", $str, -2)); // [ 0=> Elzero, 1 => Web , 2 => School ]
     echo "</pre>";
 
     // random mix of letters
@@ -35688,7 +35672,7 @@ Colorhunt.co
 
     // will remove h3 tag only
 
-    echo strip_tags("<h3>Hello <b>Elzero</b></h3>", "<h3><b>");
+    echo strip_tags("<h3>Hello <b>Elzero</b></h3>", "<h3>");
     echo '<br>';
 
     // will remove h3 and b tags
@@ -35767,6 +35751,7 @@ Colorhunt.co
     echo $query["email"] . "<br>";
     echo $query["os"] . "<br>";
 
+    // Returns a version of str with a backslash character (\) before every character that is among these: . \ + * ? [ ^ ] ( $ )
     echo "Hello [] () * + . <br>";
     echo quotemeta("Hello [] () * + . <br>");
 
@@ -35857,7 +35842,7 @@ Colorhunt.co
     echo substr_replace("Elzero_Web_School", "@", 1, 0); // E@lzero_Web_School
 
     echo "<pre>";
-    print_r(substr_replace(["OneTwo", "ThreeFour"], 1, 0));
+    print_r(substr_replace(["OneTwo", "ThreeFour"], 1, 0)); // Array ( [0] => 1 [1] => 1 )
     echo "</pre>";
 
 * String Functions 8
@@ -35986,7 +35971,7 @@ Colorhunt.co
     $counting = ["B", "A", "A", "B", "B", "B", "C"];
 
     echo '<pre>';
-    print_r(array_count_values($counting));
+    print_r(array_count_values($counting)); // Array ( [B] => 4 [A] => 2 [C] => 1 )
     echo '</pre>';
 
 * Array Functions 2
@@ -36064,12 +36049,12 @@ Colorhunt.co
         ------ True => Check For Type
 
         - array_values(Array[Required])
-        --- Return All The Values Of An Array
+        --- Return All The Values Of An Array and remove keys then add index keys
 
         - array_pad(Array[Required], Size[Required], Value[Required])
         --- Pad Array To The Specified Length With A Value
         --- Negative Value Add Elements Before Original Items
-        --- If Size < Array Length Nothing Will Be Deleted
+        --- If Size < Array Length Nothing Will Be Deleted or added
 
         - array_product(Array[Required])
         --- Calculate The Product Of Values In An Array => Return Int || Float
@@ -36110,7 +36095,7 @@ Colorhunt.co
     print_r(array_pad($pad, -10, "@"));
     echo '</pre>';
 
-    // will not remove elements from the array
+    // will not add @ or remove elements from the array
     echo '<pre>';
     print_r(array_pad($pad, 2, "@"));
     echo '</pre>';
@@ -36411,7 +36396,7 @@ Colorhunt.co
 
     <?php
 
-* Array Functions
+* Array Functions 9
 
     - array_map(Callback Function[Required], Array[Required], Other Arrays[Optional])
     --- Applies The Callback To The Elements Of The Given Arrays
@@ -36455,7 +36440,7 @@ Colorhunt.co
     echo '</pre>';
 
 
-* Array Functions
+* Array Functions 10
 
     - array_reduce(Array[Required], Callback Function[Required], Initial_Value[Optional])
     --- Reduce The Array To A Single Value
