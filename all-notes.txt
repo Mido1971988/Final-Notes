@@ -36462,7 +36462,7 @@ Colorhunt.co
     echo array_reduce($nums, "add", 100);
 
 
-* Math Functions
+* Math Functions 1
 
     - abs(Number[Required])
     --- Absolute Value => Non Negative Value
@@ -36480,9 +36480,9 @@ Colorhunt.co
     --- fmod vs %
 
 
-    echo abs(10) . "<br>";
-    echo abs(0) . "<br>";
-    echo abs(-20) . "<br>";
+    echo abs(10) . "<br>"; // 10
+    echo abs(0) . "<br>"; // 0
+    echo abs(-20) . "<br>"; // 20
 
     echo rand() . "<br>";
     echo mt_getrandmax() . "<br>";
@@ -36504,7 +36504,7 @@ Colorhunt.co
     echo gettype(fmod(11.5, 5)) . "<br>"; // float 
 
 
-*Math Functions
+*Math Functions 2
 
     - ceil(Number[Required])
     --- Round Up To Integer
@@ -36529,7 +36529,7 @@ Colorhunt.co
     echo floor(-5.99) . "<br>"; // -6
 
 
-* Math Functions
+* Math Functions 3
 
     - round(Number[Required], Precision[Optional], Mode[Optional])
     --- Round Up To Integer
@@ -36566,7 +36566,7 @@ Colorhunt.co
     echo round(4.50, 0, PHP_ROUND_HALF_ODD) . "<br>"; // 5
 
 
-* Math Functions
+* Math Functions 4
 
     - sqrt(Number[Required])
     --- Square Root
@@ -36585,7 +36585,7 @@ Colorhunt.co
     echo min([10, 20, -40, -30, 50]) . "<br>"; // -40
 
     echo "<pre>";
-    // will compare 1 = 1 then 3 > 3 so min is  [1, 2 , 6] 
+    // will compare 1 = 1 then 3 > 2 so min is  [1, 2 , 6] 
     print_r(min([1, 3, 5], [1, 2, 6]));
     echo "</pre>";
 
@@ -36593,12 +36593,12 @@ Colorhunt.co
     echo max([10, 20, -40, -30, 50]) . "<br>"; // 50
 
     echo "<pre>";
-    will compare 1 = 1 then 3 > 3 so max is [1, 3, 5] 
+    will compare 1 = 1 then 3 > 2 so max is [1, 3, 5] 
     print_r(max([1, 3, 5], [1, 2, 6]));
     echo "</pre>";
 
 
-* Filter Functions
+* Filter Functions 1
 
     - filter_list()
     --- Returns A List Of All Supported Filters
@@ -36628,7 +36628,7 @@ Colorhunt.co
     }
 
 
-* Filter Functions
+* Filter Functions 2
 
     - filter_var(Value[Required], Filter[Optional], Options[Optional])
     --- Validate Filters
@@ -36652,7 +36652,7 @@ Colorhunt.co
 
     $bool = "Elzero"; // True | 1 | "yes" | "on"
 
-    var_dump(filter_var($bool, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE)); // NULL with flag will be false
+    var_dump(filter_var($bool, FILTER_VALIDATE_BOOL, FILTER_NULL_ON_FAILURE));
 
     echo "<br>";
 
@@ -36674,7 +36674,7 @@ Colorhunt.co
     var_dump(filter_var($mac, FILTER_VALIDATE_MAC));
 
 
-* Filter Functions
+* Filter Functions 3
 
     - filter_var(Value[Required], Filter[Optional], Options[Optional])
     --- Validate Filters
@@ -36722,25 +36722,25 @@ Colorhunt.co
     ));
 
 
-* Filter Functions
+* Filter Functions 4
 
     - filter_var(Value[Required], Filter[Optional], Options[Optional])
     --- Sanitize Filters
 
     ------ FILTER_SANITIZE_EMAIL
-    ------ Remove All But Letters + Digits + !#$%&#038;'*+-=?^_`{|}~@.[]
+    ------ Remove All except Letters + Digits + !#$%&#038;'*+-=?^_`{|}~@.[]
     ------ Test ¥
 
     ------ FILTER_SANITIZE_NUMBER_INT
-    --------- Remove All But Digits, +, -
+    --------- Remove All except Digits, +, -
 
     ------ FILTER_SANITIZE_NUMBER_FLOAT
-    --------- Remove ALL But Digits, +, - And Optionally [.,eE]
+    --------- Remove ALL except Digits, +, - And Optionally [.,eE]
     --------- Flags => FILTER_FLAG_ALLOW_THOUSAND
     --------- Flags => FILTER_FLAG_ALLOW_FRACTION
 
     ------ FILTER_SANITIZE_URL
-    ------ Remove All But Letters + Digits + $-_.+!*'(),{}|\\^~[]`<>#%";/?:@&=.
+    ------ Remove All except Letters + Digits + $-_.+!*'(),{}|\\^~[]`<>#%";/?:@&=.
     ------ Test ¥ + Space
   
 
@@ -36774,7 +36774,7 @@ Colorhunt.co
 
 
 
-* Filter Functions
+* Filter Functions 5
 
     - filter_input(Type[Required], Value[Required], Filter[Optional], Options[Optional])
     --- INPUT_GET
@@ -36801,7 +36801,7 @@ Colorhunt.co
     </form>
 
 
-* File System Functions
+* File System Functions 1
     - disk_total_space()
     --- Get Total Space In Bytes => Then We Can Get [KB, MB, GB]
     - disk_free_space() || diskfreespace()
@@ -36818,10 +36818,10 @@ Colorhunt.co
     echo '<br>';
     echo filesize("elzero.txt");
 
-* File System Functions
+* File System Functions 2
     - is_dir(Name)
     --- Tells If The Filename Is A Directory
-// search for file system permissions numbers to understand 0777
+    // search for file system permissions numbers to understand 0777
     - mkdir(Path[Required], Mode[Optional] = 0777, Recursive[Optional], Context[Optional])
     --- Permissions Is Ignored On Windows
     --- Permissions Is Octal Number Start With 0
@@ -36842,7 +36842,7 @@ Colorhunt.co
     var_dump(file_exists("Test/Upload/Files"));
 
 
-* File System Functions ( change permissions number after creating directory )
+* File System Functions 3 ( change permissions number after creating directory )
     - chmod(File[Required], Mode[Required])
     --- Change Mode
     - fileperms(Name)
@@ -36860,7 +36860,7 @@ Colorhunt.co
     clearstatcache();
     echo fileperms("Y") . "<br>";
 
-* File System Functions
+* File System Functions 4
     - basename(Path[Required], Suffix[Optional])
     --- Returns Trailing Name Component Of Path
     - dirname(Path[Required], Levels[Optional] = 1)
@@ -36890,7 +36890,7 @@ Colorhunt.co
 
     echo pathinfo(__FILE__, PATHINFO_DIRNAME). "<br>";
 
-* File System Functions
+* File System Functions 5
     - Fopen(FileName[Required], Mode[Required], IncludePath[Optional], Context[Optional])
 
     --- Mode
@@ -36917,15 +36917,18 @@ Colorhunt.co
 
     fclose($handle);
 
+    - note : difference between r+ and w+ ?
+        r+ doesn't delete the content of the file and doesn't create a new file if such file doesn't exist, 
+        whereas w+ deletes the content of the file and creates it if it doesn't exist.
 
 
-* File System Functions
+* File System Functions 6
   - Fopen(FileName[Required], Mode[Required], IncludePath[Optional], Context[Optional])
 
   --- Mode
 
   --- [a] For Write => Pointer At The End + Create If Not Exists
-  --- [a+] For Read & Write => Pointer At The End + Create If Not Exists
+  --- [a+] For Read & Write => Pointer At The End and do not delete the content of thefile + Create If Not Exists 
   --- [x] Create + Open For Write => Pointer At The Beginning
   --- [x+] Create + Open For Read & Write => Pointer At The Beginning
 
@@ -36942,7 +36945,7 @@ Colorhunt.co
     fclose($handle);
 
 
-* File System Functions
+* File System Functions 7
   - Fopen(FileName[Required], Mode[Required], IncludePath[Optional], Context[Optional])
 
   --- [c]
@@ -36951,12 +36954,12 @@ Colorhunt.co
   ------ No Problem If Its Exists (not like x)
   ------ No Truncation ( not like w)
   ------ Pointer At The Beginning
-  --- [c+] For Read &#038; Write
+  --- [c+] For Read & Write
 
   - file(File[Required], Flag[Optional], Context[Optional])
   --- Read Entire File Into Array
   - feof(File[Required])
-  --- Tests For EOF On A File Pointer
+  --- Tests For EOF (end of file )On A File Pointer
 
 
     // echo '<pre>';
@@ -36988,7 +36991,7 @@ Colorhunt.co
     fclose($handle);
 
 
-* File System Functions
+* File System Functions 8
   - Fopen(FileName[Required], Mode[Required], IncludePath[Optional], Context[Optional])
 
   - rewind(File[Required])
@@ -37029,7 +37032,7 @@ Colorhunt.co
 
     echo mb_strlen("School", "8bit");
 
-* File System Functions
+* File System Functions 9
 
   - glob(Pattern[Required], Flags[Optional])
   --- Find Pathnames Matching A Pattern And Return Array
@@ -37071,7 +37074,7 @@ Colorhunt.co
     unlink("Old/Work.rtf");
 
 
-* File System Functions
+* File System Functions 10
 
   - file_get_contents(File[Required], Include_Path[Optional], Context[Optional], Start[Optional], MaxLength(Optional))
   --- Reads Entire File Into A String
@@ -37088,8 +37091,6 @@ Colorhunt.co
   Search
   - Get Set Include Path
 
-
-
     echo get_include_path() . "<br>";
 
     // echo file_get_contents("elzero.txt", true, NULL, 4, 5);
@@ -37098,11 +37099,11 @@ Colorhunt.co
 
     // print_r(file("https://elzero.net"));
 
-    // without FULE_APPEND will override content inside the file
+    // without FILE_APPEND will override content inside the file
     echo file_put_contents("elzero.txt", "\r\nThis Is New Line", FILE_APPEND);
 
 
-* Date And Time Functions
+* Date And Time Functions 1
 
     - date_default_timezone_get()
 
@@ -37163,7 +37164,7 @@ Colorhunt.co
     var_dump(checkdate(-2, 02, 1982));
 
 
-* Date And Time Functions
+* Date And Time Functions 2
 
     - date_format()
 
@@ -37228,7 +37229,7 @@ Colorhunt.co
 
 
 
-* Date And Time Functions
+* Date And Time Functions 3
 
     - date_format()
 
@@ -37299,7 +37300,7 @@ Colorhunt.co
     echo date_format($d, "Y-m-d H/i/s") . "<br>";
     echo date_format($d, "Y-m-d H/i/s u") . "<br>";
 
-* Date And Time Functions
+* Date And Time Functions 4
 
     - date_interval_create_from_date_string()
     - date_add()
@@ -37319,7 +37320,7 @@ Colorhunt.co
 
     echo date_format($d, "Y/m/d H-i-s a");
 
-* Date And Time Functions
+* Date And Time Functions 5
 
     - time()
     --- Unix Timestamp => Seconds Since 01 Jan 1970
@@ -37350,7 +37351,7 @@ Colorhunt.co
     print_r(date_parse("1985-2-31 5:25:15 UTC"));
     echo "</pre>";
 
-* Date And Time Functions
+* Date And Time Functions 6
 
     - date_diff()
     - strtotime(DateTime, Base)
@@ -37392,17 +37393,6 @@ Colorhunt.co
 
   setcookie("style", "dark", time() + 60 * 60 * 24 * 30);
 
-* Cookies
-
-    - setcookie(Name[Required], Value, Expire, Path, Domain, Secure, HTTP_Only);
-    --- Name
-    --- Value
-    --- Expire
-    --- Path
-    --- Domain
-    --- Secure
-    --- HTTP_Only
-
     Important
     - DO NOT Store Sensitive Information
     - Not Everything Saved To Cookies
@@ -37416,7 +37406,6 @@ Colorhunt.co
 
     echo $_COOKIE["style"];
 
-* Cookies
     - Modify
     - Delete
     - Add Array
@@ -37433,7 +37422,6 @@ Colorhunt.co
         echo $_COOKIE["style"]["font"];
     }
 
-* Cookies
     - Practice
   
 
@@ -37527,6 +37515,10 @@ Colorhunt.co
     <?php } ?>
 
     <a href="logout.php">Logout</a>
+
+    - note : difference between session_unset() and session_destroy() ?
+        session_destroy(); is deleting the whole session.
+        session_unset(); deletes only the variables from session - session still exists. Only data is truncated.
 
 * Header
     - Send RAW HTTP Header To Client To Manipulate Info Sent By Web Server Before Any Output
