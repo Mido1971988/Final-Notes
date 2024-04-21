@@ -37533,3 +37533,87 @@ Colorhunt.co
     // header("Refresh:5; url=test.php");
     header("Location: test.php");
     exit;
+
+
+***************************************** WordPress *****************************************
+
+
+* Difference between Wordpress.com vs wordpress.org?
+    Wordpress.com like renting website but they will maintain the website for you (limited plugin and on free version will add adds to website)
+    Wordpress.org like buying website but you have to maintain your website (you can use more plugins and you can host on any hosting website )
+
+* Difference between Themes and plugins ?
+    Themes : to change your website appearance 
+    Plugins : to change your website functionality and features 
+
+* Is Wordpress.org free ?
+    Yes free but you have to pay for domain name and hosting account
+
+* To access your dashboard you have two options : 
+    1 - if you are using Hosting ( domain-name/wp-admin )
+    2 - if you are using local ( press WP Admin button )
+
+* Best website to purchase a theme ?
+    https://themeforest.net
+    Purchase and download ( installable Wordpress file only )
+
+* Best website to buy plugins?
+    https://codecanyon.net
+    Purchase and download ( installable Wordpress file only )
+
+
+* Best performance free theme ?
+    Astra
+    Kadence 
+
+    After choosing the theme you can import starter template ( different design for chosen theme ) 
+    you can also import starter packs ( design of single page not whole site like starter template) 
+    You can also import wireframe (like starter pack but without no styling so will be easier to customize )
+
+* Structure of webdesign in wordpress is pages or posts
+
+* Every post should has category ( default uncategorized ) 
+
+* Difference between category and tag ? 
+    Each post should has category but should not has tag 
+    Category has hierarchy which means you can have parent , child or grand child 
+    But tag only one level
+
+* Some recommended plugins 
+    Wpforms ( forms )
+    Anti spam bee 
+    Yoast SEO
+    Site kit by google ( track traffic on your website) 
+    User role editor ( allow users contributors to upload media )  
+    Woo commerce ( e commerce website ) 
+    Wordfence ( security)
+    Updraft plus ( backup)
+    Kadence block ( for Kadence theme )
+
+* Website to get color palette 
+    Colorhunt.co
+
+
+***************************************** Custom wordpress theme *****************************************
+
+* based on this Video : ( https://youtu.be/-h7gOJbIpmo?si=Q66ordUIKryEsoSr )
+    and you can find code on ( /Users/mohamedhussein/Local Sites/first-wordpress/app/public/wp-content/theme )
+
+* Custom wordpress theme :
+    - Only two files required 
+    Index.php ( wordpress will always fallback to index.php if can’t find the requested page ) 
+    Style.css ( you can add theme information in comment and will be shown when you press theme details in theme section in wordpress dashboard) 
+
+* other files 
+    - Functions.php ( to write your functions and you can override any function)
+    - header.php ( you can write header here and then add it to any file by using <?php get_header(); ?> )
+    - footer.php ( you can write footer here and then add it to any file by using <?php get_footer(); ?> )
+    - front-page.php ( the main page shown at home page and this page chosen from WP dashboard > setting > Reading > Home page ) 
+    - single.php ( show single post and get content from template-parts/content-article )
+    - archive.php ( show post pages but i don’t know why we added it inside index.php and get content from content-archive and we have to mark blog page as post pages  from WP dashboard > setting > reading  )
+    - page.php ( show single page and get content from content-page like about page or contact us page)
+    - comments.php ( comments and can be shown by using comments_template(); like in content-article )
+    - 404.php ( show not found page )
+    - Search.php ( show the result of search form 
+        You can add it as we did in 404.php file or you can add it from WP dashboard > appearance> widgets ) 
+    
